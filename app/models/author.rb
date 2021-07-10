@@ -1,7 +1,7 @@
 class Author < ApplicationRecord
     has_many :books
 
-    def self.group_by_country(country_name)
+    def self.group_by_country(country_name = "")
         country_name = country_name.length < 1 ? "" : country_name.downcase
         _query = """
         SELECT json_agg(t) AS custom
