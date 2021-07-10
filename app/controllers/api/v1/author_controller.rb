@@ -7,8 +7,6 @@ module Api
                 res = Author.group_by_country(country)
                 render json: res
             end
-            
-
         end
     end
 end
