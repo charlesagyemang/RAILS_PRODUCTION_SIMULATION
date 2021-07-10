@@ -3,12 +3,16 @@ class Book < ApplicationRecord
 
   def self.group_by_topics
     _query = """
-    SELECT topic,
-      COUNT(topic) AS custom_number
-    FROM books
-    GROUP BY topic;
+    SELECT json_agg(t) AS custom
+    FROM(
+      SELECT topic,
+        COUNT(topic) As number_of_boos
+      FROM books
+      GROUP BY topic
+    )t;
     """
-    self.find_by_sql _query
+    res = self.find_by_sql _query
+    res.first.custom
   end
   
 end
