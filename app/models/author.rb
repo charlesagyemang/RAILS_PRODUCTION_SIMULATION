@@ -4,7 +4,7 @@ class Author < ApplicationRecord
     def self.group_by_country(country_name = "")
         country_name = country_name.length < 1 ? "" : country_name.downcase
         _query = """
-        SELECT json_agg(t) AS custom
+        SELECT json_agg(t) AS custommi
         FROM(
             SELECT authors.name, 
                 authors.country,
@@ -20,7 +20,7 @@ class Author < ApplicationRecord
         """
         _query += _query_having + _query_ending
         res = self.find_by_sql _query
-        res.first.custom
+        res.first.custommi
     end
     
     
