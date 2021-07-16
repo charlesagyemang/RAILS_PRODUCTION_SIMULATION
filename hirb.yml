@@ -1,0 +1,6 @@
+:output:
+  Book:
+    :options:
+      :fields:
+        - id
+        - name

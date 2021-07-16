@@ -100,5 +100,40 @@ ON A TOPIC ? -----
 
 
 
+
+
+=================================================
+
+
+SELECT cars."modelName" as car,
+	   drivers."fullName" as driver,
+	   COUNT(sales."driverId") as number_of_sales
+FROM sales
+JOIN drivers ON drivers.id = sales."driverId"
+JOIN cars ON  cars.id = drivers."carId"
+GROUP BY sales."driverId", drivers."fullName", cars."modelName"
+ORDER BY COUNT(sales."driverId") DESC;
+
+
+SELECT cars."modelName" as car,
+	   drivers."fullName" as driver,
+	   COUNT(sales."driverId") as number_of_sales
+FROM sales
+JOIN drivers ON drivers.id = sales."driverId"
+JOIN cars ON  cars.id = drivers."carId"
+GROUP BY sales."driverId", drivers."fullName", cars."modelName"
+ORDER BY COUNT(sales."driverId") DESC;
+
+HOW MUCH MONEY ABU HAS BROUGHT THIS MONTH
+
+SELECT SUM( CAST(sales."amountReceived" AS INT))
+FROM sales
+WHERE sales."status" = 'RECEIVED_BY_KEHILLAH'
+	  AND sales."dateReceived" BETWEEN '2021-07-01' AND '2021-07-31'
+	  AND sales."driverId" = 's33c6i5H6xvxTTn3D'
+
+=================================================
+
+
 =end
 
